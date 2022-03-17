@@ -16,20 +16,23 @@ def get_client():
         namespace=settings.DATASTORE_NAMESPACE,
     )
 
-    class NDBMiddleware:
-        """Handles ndb context"""
-        def __init__(self,get_response):
-            self.get_response = get_response
-            self.client = get_client()
-        def call(self,request):
-            """create a context"""
-            context = self.client.context()
-            request.ndb_context = context
-            with context:
-                response = self.get_response(request)
-            
-            return response
 
+class NDBMiddleware:
+    """Middlware for handling NDB context."""
+
+    def __init__(self, get_response):
+        """Create client."""
+        self.get_response = get_response
+        self.client = get_client()
+
+    def __call__(self, request):
+        """Create a context."""
+        context = self.client.context()
+        request.ndb_context = context
+        with context:
+            response = self.get_response(request)
+
+        return response
 class TestRunner(DiscoverRunner):
     """TEST SUITE RUNNER USING DATASTORE"""
 

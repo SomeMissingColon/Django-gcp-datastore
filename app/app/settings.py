@@ -136,4 +136,4 @@ LOGGING = {
 IS_GAE = os.environ.get('GAE_APPLICATION', False)
 GOOGLE_CLOUD_PROJECT = os.environ.get('GOOGLE_CLOUD_PROJECT')
 DATASTORE_NAMESPACE = 'main'
-DATASTORE_NAMESPACE = 'app.datastore.TestRunner'
+TEST_RUNNER = 'app.datastore.TestRunner'

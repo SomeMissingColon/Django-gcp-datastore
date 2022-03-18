@@ -10,7 +10,11 @@
     <title>Datazentrik: the home to all your zen needs</title>
 </head>
 <body>
-    <h1>Work in progress!</h1>
-
-</body>
+    <h1>!W!I!P!</h1>
+    <ul>
+        {% for redirect in redirects %}
+            <li><a href="{% url 'datazentrik:redirect' slug=redirect.key.id %}">{{ redirect.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body> 
 </html>
